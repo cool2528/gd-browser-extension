@@ -1,0 +1,66 @@
+{
+  "name": "gdownload-extension",
+  "version": "1.0.0",
+  "description": "Browser extension for GDownload - Capture download links and send them to GDownload",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:chrome": "vite build --mode chrome",
+    "build:firefox": "vite build --mode firefox",
+    "build:edge": "vite build --mode edge",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:unit": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\"",
+    "generate:icons": "node generate-icons.js",
+    "package": "npm run build && web-ext build --source-dir dist",
+    "package:chrome": "npm run build:chrome && cd dist && powershell Compress-Archive -Path * -DestinationPath ../gdownload-extension-chrome.zip -Force",
+    "package:firefox": "npm run build:firefox && web-ext build --source-dir dist",
+    "package:edge": "npm run build:edge && cd dist && powershell Compress-Archive -Path * -DestinationPath ../gdownload-extension-edge.zip -Force"
+  },
+  "dependencies": {
+    "@tanstack/react-virtual": "^3.0.0",
+    "lodash-es": "^4.17.21",
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.21",
+    "@types/chrome": "^0.0.254",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "jsdom": "^23.0.1",
+    "playwright": "^1.40.1",
+    "prettier": "^3.1.1",
+    "sharp": "^0.33.1",
+    "typescript": "^5.3.3",
+    "vite": "^7.2.2",
+    "vitest": "^4.0.8",
+    "web-ext": "^9.1.0"
+  },
+  "author": "GDownload Team",
+  "license": "MIT",
+  "homepage": "https://github.com/cool2528/gd-browser-extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cool2528/gd-browser-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cool2528/gd-browser-extension/issues"
+  }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDownload Extension Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #409EFF;
+            padding-bottom: 10px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #409EFF;
+            margin-top: 0;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+        }
+        .link-list li {
+            margin: 10px 0;
+        }
+        .link-list a {
+            display: inline-block;
+            padding: 8px 12px;
+            background: #409EFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .link-list a:hover {
+            background: #66b1ff;
+        }
+        .test-info {
+            background: #ecf5ff;
+            border: 1px solid #b3d8ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #67C23A;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #85ce61;
+        }
+        #dynamic-links {
+            border: 2px dashed #ddd;
+            padding: 15px;
+            margin-top: 10px;
+            min-height: 100px;
+        }
+        .video-container {
+            margin: 20px 0;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 GDownload Extension Test Page</h1>
+
+    <div class="test-info">
+        <strong>测试说明：</strong>
+        <ul>
+            <li>打开浏览器扩展 popup 查看捕获的链接</li>
+            <li>点击右键菜单测试 "Download with GDownload"</li>
+            <li>网络嗅探会自动捕获动态加载的资源</li>
+            <li>测试不同类型的下载链接（直链、查询参数、magnet 等）</li>
+        </ul>
+    </div>
+
+    <!-- 测试 1: 标准下载链接 -->
+    <div class="section">
+        <h2>1. 标准下载链接（直链）</h2>
+        <ul class="link-list">
+            <li><a id="test-zip" href="https://github.com/microsoft/vscode/releases/download/1.85.0/VSCode-win32-x64-1.85.0.zip">VSCode Windows 64-bit (ZIP)</a></li>
+            <li><a id="test-iso" href="https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-desktop-amd64.iso">Ubuntu Desktop 22.04.3 LTS (ISO)</a></li>
+            <li><a id="test-exe" href="https://download.mozilla.org/?product=firefox-latest&os=win64&lang=zh-CN">Firefox 最新版 (EXE)</a></li>
+        </ul>
+    </div>
+
+    <!-- 测试 2: 查询参数中的文件名 -->
+    <div class="section">
+        <h2>2. 查询参数文件名</h2>
+        <ul class="link-list">
+            <li><a id="test-pdf-param" href="https://example.com/download?filename=test-file.pdf&version=1.0">PDF with filename param</a></li>
+            <li><a id="test-xlsx-param" href="https://example.com/api/file?attname=report.xlsx&id=123">Excel with attname param</a></li>
+            <li><a id="test-csv-dl" href="https://example.com/export?dl=1&file=data.csv">CSV with dl=1</a></li>
+        </ul>
+    </div>
+
+    <!-- 测试 3: Magnet 链接 -->
+    <div class="section">
+        <h2>3. Magnet 链接（BT）</h2>
+        <ul class="link-list">
+            <li><a id="test-magnet" href="magnet:?xt=urn:btih:ABCDEF1234567890&dn=test-file.mkv&tr=udp://tracker.example.com:80">Test Magnet Link</a></li>
+        </ul>
+    </div>
+
+    <!-- 测试 4: 媒体链接 -->
+    <div class="section">
+        <h2>4. 媒体文件</h2>
+        <div class="video-container">
+            <video id="test-video" controls width="600">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            </video>
+        </div>
+        <ul class="link-list">
+            <li><a id="test-mp4" href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">Elephants Dream (MP4)</a></li>
+            <li><a id="test-mp3" href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Sound Helix Song 1 (MP3)</a></li>
+        </ul>
+    </div>
+
+    <!-- 测试 5: 动态链接 -->
+    <div class="section">
+        <h2>5. 动态生成链接</h2>
+        <button id="btn-dynamic" onclick="addDynamicLinks()">生成动态链接</button>
+        <button id="btn-delayed" onclick="addDelayedHref()">延迟赋值 href</button>
+        <button id="btn-xhr" onclick="triggerXHRDownload()">触发 XHR 下载</button>
+        <div id="dynamic-links"></div>
+    </div>
+
+    <!-- 测试 6: download 属性 -->
+    <div class="section">
+        <h2>6. Download 属性链接</h2>
+        <ul class="link-list">
+            <li><a id="test-download-img" href="https://example.com/image.jpg" download="custom-name.jpg">带 download 属性的图片</a></li>
+            <li><a id="test-download-doc" href="https://example.com/doc" download="document.pdf">带 download 属性的文档</a></li>
+        </ul>
+    </div>
+
+    <!-- 测试 7: GitHub Releases -->
+    <div class="section">
+        <h2>7. GitHub Releases</h2>
+        <ul class="link-list">
+            <li><a id="test-github-zip" href="https://github.com/atom/atom/releases/download/v1.63.1/atom-x64-windows.zip">Atom Editor Release</a></li>
+            <li><a id="test-github-archive" href="https://github.com/nodejs/node/archive/refs/tags/v20.10.0.zip">Node.js Source Code Archive</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // 动态添加链接
+        function addDynamicLinks() {
+            const container = document.getElementById('dynamic-links');
+            const timestamp = Date.now();
+            const links = [
+                { href: `https://example.com/dynamic/file-${timestamp}.zip`, text: `Dynamic ZIP ${timestamp}` },
+                { href: `https://example.com/dynamic/video-${timestamp}.mp4`, text: `Dynamic Video ${timestamp}` },
+                { href: `https://example.com/dynamic/audio-${timestamp}.mp3`, text: `Dynamic Audio ${timestamp}` }
+            ];
+
+            links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.text;
+                a.style.display = 'block';
+                a.style.margin = '10px 0';
+                a.style.padding = '8px 12px';
+                a.style.background = '#E6A23C';
+                a.style.color = 'white';
+                a.style.textDecoration = 'none';
+                a.style.borderRadius = '4px';
+                container.appendChild(a);
+            });
+        }
+
+        // 延迟赋值 href（测试属性变更监听）
+        function addDelayedHref() {
+            const container = document.getElementById('dynamic-links');
+            const a = document.createElement('a');
+            a.textContent = '延迟赋值的链接（2秒后设置 href）';
+            a.id = 'delayed-link';
+            a.style.display = 'block';
+            a.style.margin = '10px 0';
+            a.style.padding = '8px 12px';
+            a.style.background = '#F56C6C';
+            a.style.color = 'white';
+            a.style.textDecoration = 'none';
+            a.style.borderRadius = '4px';
+            container.appendChild(a);
+
+            // 2秒后设置 href
+            setTimeout(() => {
+                a.href = `https://example.com/delayed/file-${Date.now()}.pdf`;
+                a.textContent = `延迟赋值的链接 - ${a.href}`;
+            }, 2000);
+        }
+
+        // 触发 XHR 下载（测试网络嗅探）
+        function triggerXHRDownload() {
+            const container = document.getElementById('dynamic-links');
+            const info = document.createElement('div');
+            info.id = 'xhr-result';
+            info.style.padding = '10px';
+            info.style.background = '#ecf5ff';
+            info.style.border = '1px solid #b3d8ff';
+            info.style.borderRadius = '4px';
+            info.style.margin = '10px 0';
+            info.textContent = '正在触发 XHR 请求...';
+            container.appendChild(info);
+
+            // 模拟 fetch 请求（会被网络嗅探捕获）
+            fetch('https://httpbin.org/json', {
+                headers: {
+                    'Accept': 'application/json',
+                    'User-Agent': 'GDownload-Test'
+                }
+            })
+            .then(response => {
+                info.textContent = `✅ XHR 请求完成 - ${response.url} (${response.status})`;
+                info.style.background = '#f0f9ff';
+                info.style.border = '1px solid #67C23A';
+            })
+            .catch(error => {
+                info.textContent = `❌ XHR 请求失败 - ${error.message}`;
+                info.style.background = '#fef0f0';
+                info.style.border = '1px solid #F56C6C';
+            });
+        }
+
+        console.log('✅ GDownload Extension Test Page loaded');
+        console.log('📌 Open extension popup to see captured links');
+    </script>
+</body>
+</html>

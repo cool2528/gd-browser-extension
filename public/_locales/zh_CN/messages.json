@@ -1,0 +1,373 @@
+{
+  "extName": {
+    "message": "GDownload 扩展",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "捕获下载链接并发送至 GDownload",
+    "description": "扩展描述"
+  },
+  "save": {
+    "message": "保存设置"
+  },
+  "saved": {
+    "message": "设置已保存"
+  },
+  "cancel": {
+    "message": "取消"
+  },
+  "add": {
+    "message": "添加"
+  },
+  "remove": {
+    "message": "移除"
+  },
+  "clearAll": {
+    "message": "全部清除"
+  },
+  "enabled": {
+    "message": "已启用"
+  },
+  "disabled": {
+    "message": "已禁用"
+  },
+  "navSettings": {
+    "message": "设置"
+  },
+  "navGeneral": {
+    "message": "常规"
+  },
+  "navConnection": {
+    "message": "连接"
+  },
+  "navLinkCapture": {
+    "message": "链接捕获"
+  },
+  "navPrivacy": {
+    "message": "隐私与安全"
+  },
+  "navAbout": {
+    "message": "关于"
+  },
+  "generalTitle": {
+    "message": "常规设置"
+  },
+  "captureBehavior": {
+    "message": "捕获行为"
+  },
+  "autoCapture": {
+    "message": "启用自动捕获"
+  },
+  "autoCaptureDesc": {
+    "message": "浏览时自动捕获下载链接"
+  },
+  "showNotifications": {
+    "message": "显示桌面通知"
+  },
+  "autoSend": {
+    "message": "捕获后自动发送"
+  },
+  "autoSendDesc": {
+    "message": "自动将捕获的链接发送到 GDownload"
+  },
+  "linkFiltering": {
+    "message": "链接过滤"
+  },
+  "minFileSize": {
+    "message": "最小文件大小 (MB)"
+  },
+  "connectionTitle": {
+    "message": "连接设置"
+  },
+  "aria2Config": {
+    "message": "aria2 RPC 配置"
+  },
+  "websocketUrl": {
+    "message": "WebSocket 地址"
+  },
+  "websocketUrlDesc": {
+    "message": "aria2c 实例的 WebSocket 地址"
+  },
+  "rpcSecret": {
+    "message": "RPC 密钥"
+  },
+  "rpcSecretDesc": {
+    "message": "用于身份验证的密钥令牌"
+  },
+  "autoConnect": {
+    "message": "启动时自动连接"
+  },
+  "testConnection": {
+    "message": "测试连接"
+  },
+  "testing": {
+    "message": "测试中..."
+  },
+  "connectionSuccessful": {
+    "message": "连接成功！aria2c 正在运行。"
+  },
+  "connectionFailed": {
+    "message": "连接失败"
+  },
+  "linkCaptureTitle": {
+    "message": "链接捕获设置"
+  },
+  "fileSizeFilter": {
+    "message": "文件大小过滤"
+  },
+  "minFileSizeDesc": {
+    "message": "仅捕获大于此大小的文件。设为 0 表示捕获所有文件。"
+  },
+  "fileTypeFilter": {
+    "message": "文件类型过滤"
+  },
+  "fileTypeFilterDesc": {
+    "message": "仅捕获特定文件类型。留空表示捕获所有类型。"
+  },
+  "quickAdd": {
+    "message": "快速添加："
+  },
+  "selectedTypes": {
+    "message": "已选择类型 ({count})："
+  },
+  "addCustomFileType": {
+    "message": "添加自定义文件类型"
+  },
+  "fileTypeInputPlaceholder": {
+    "message": ".扩展名 或 扩展名"
+  },
+  "urlBlacklist": {
+    "message": "URL 黑名单"
+  },
+  "urlBlacklistDesc": {
+    "message": "排除匹配这些模式的 URL（支持正则表达式）。"
+  },
+  "blacklistPatterns": {
+    "message": "黑名单模式 ({count})："
+  },
+  "addBlacklistPattern": {
+    "message": "添加黑名单模式"
+  },
+  "blacklistPatternPlaceholder": {
+    "message": "^https?://example\\.com/"
+  },
+  "blacklistPatternExample": {
+    "message": "示例：^https?://ads\\.example\\.com/ （阻止来自 ads.example.com 的所有 URL）"
+  },
+  "domainWhitelist": {
+    "message": "域名白名单"
+  },
+  "domainWhitelistDesc": {
+    "message": "仅捕获来自这些域名的链接。留空表示捕获所有域名。"
+  },
+  "whitelistedDomains": {
+    "message": "白名单域名 ({count})："
+  },
+  "addWhitelistDomain": {
+    "message": "添加白名单域名"
+  },
+  "domainPlaceholder": {
+    "message": "github.com"
+  },
+  "domainExample": {
+    "message": "示例：github.com, sourceforge.net"
+  },
+  "privacyTitle": {
+    "message": "隐私与安全设置"
+  },
+  "aboutHeadersTitle": {
+    "message": "关于请求头"
+  },
+  "aboutHeadersDesc": {
+    "message": "下载文件时，某些服务器需要特定的 HTTP 请求头进行身份验证或访问控制。这些设置控制随下载请求发送到 GDownload 的请求头。"
+  },
+  "basicHeaders": {
+    "message": "基础请求头"
+  },
+  "sendUserAgent": {
+    "message": "发送 User-Agent 请求头"
+  },
+  "sendUserAgentDesc": {
+    "message": "标识您的浏览器类型。通常是安全的，并且经常被服务器要求。"
+  },
+  "sendReferer": {
+    "message": "发送 Referer 请求头"
+  },
+  "sendRefererDesc": {
+    "message": "指示您来自哪个页面。对于防盗链保护和访问控制很重要。"
+  },
+  "sensitiveHeaders": {
+    "message": "敏感请求头"
+  },
+  "securityNoticeTitle": {
+    "message": "安全提示："
+  },
+  "securityNoticeDesc": {
+    "message": "以下请求头可能包含敏感的身份验证信息。仅当您信任下载源并了解风险时才启用它们。"
+  },
+  "sendCookie": {
+    "message": "发送 Cookie 请求头"
+  },
+  "sendCookieDesc": {
+    "message": "敏感：包含您的登录会话和身份验证令牌。从经过身份验证的云存储（百度网盘、Google Drive 等）下载时需要。"
+  },
+  "sendAuthorization": {
+    "message": "发送 Authorization 请求头"
+  },
+  "sendAuthorizationDesc": {
+    "message": "敏感：包含身份验证凭据（API 密钥、令牌）。从私有 API 或受保护资源下载时需要。"
+  },
+  "recommendations": {
+    "message": "建议"
+  },
+  "safeToEnable": {
+    "message": "安全启用："
+  },
+  "safeUserAgent": {
+    "message": "User-Agent（几乎总是安全的）"
+  },
+  "safeReferer": {
+    "message": "Referer（公共下载安全）"
+  },
+  "enableWithCaution": {
+    "message": "谨慎启用："
+  },
+  "cautionCookies": {
+    "message": "Cookies（仅用于可信的云存储服务）"
+  },
+  "cautionAuthorization": {
+    "message": "Authorization（仅用于您控制的私有 API）"
+  },
+  "bestPractice": {
+    "message": "最佳实践："
+  },
+  "bestPractice1": {
+    "message": "默认保持敏感请求头禁用"
+  },
+  "bestPractice2": {
+    "message": "仅在特定下载需要时临时启用"
+  },
+  "bestPractice3": {
+    "message": "使用 URL 黑名单防止向不受信任的域发送敏感请求头"
+  },
+  "currentConfiguration": {
+    "message": "当前配置"
+  },
+  "headerUserAgent": {
+    "message": "User-Agent："
+  },
+  "headerReferer": {
+    "message": "Referer："
+  },
+  "headerCookie": {
+    "message": "Cookie："
+  },
+  "headerAuthorization": {
+    "message": "Authorization："
+  },
+  "statusEnabledSafe": {
+    "message": "✓ 已启用"
+  },
+  "statusDisabledSafe": {
+    "message": "✗ 已禁用"
+  },
+  "statusEnabledSensitive": {
+    "message": "⚠️ 已启用（敏感）"
+  },
+  "statusDisabledSecure": {
+    "message": "✓ 已禁用（安全）"
+  },
+  "contextMenuDownload": {
+    "message": "使用 GDownload 下载"
+  },
+  "contextMenuDownloadAll": {
+    "message": "下载页面上的所有链接"
+  },
+  "popupTitle": {
+    "message": "已捕获的链接"
+  },
+  "popupNoLinks": {
+    "message": "尚未捕获任何链接"
+  },
+  "popupSendToGDownload": {
+    "message": "发送到 GDownload"
+  },
+  "popupClear": {
+    "message": "清除"
+  },
+  "popupSearch": {
+    "message": "搜索链接..."
+  },
+  "popupConnected": {
+    "message": "已连接"
+  },
+  "popupDisconnected": {
+    "message": "未连接"
+  },
+  "popupSending": {
+    "message": "发送中..."
+  },
+  "popupSent": {
+    "message": "发送成功"
+  },
+  "popupError": {
+    "message": "错误"
+  },
+  "aboutTitle": {
+    "message": "关于"
+  },
+  "aboutExtensionInfo": {
+    "message": "扩展信息"
+  },
+  "aboutName": {
+    "message": "名称："
+  },
+  "aboutVersion": {
+    "message": "版本："
+  },
+  "aboutAuthor": {
+    "message": "作者："
+  },
+  "aboutCompatibility": {
+    "message": "兼容性"
+  },
+  "aboutGDownloadVersion": {
+    "message": "GDownload 版本："
+  },
+  "aboutAria2Version": {
+    "message": "aria2c 版本："
+  },
+  "aboutBrowsers": {
+    "message": "浏览器："
+  },
+  "aboutResources": {
+    "message": "资源"
+  },
+  "aboutGitHub": {
+    "message": "GitHub 仓库"
+  },
+  "aboutGitHubDesc": {
+    "message": "查看源代码并贡献"
+  },
+  "aboutReportIssue": {
+    "message": "报告问题"
+  },
+  "aboutReportIssueDesc": {
+    "message": "发现了 bug？告诉我们"
+  },
+  "aboutDocumentation": {
+    "message": "文档"
+  },
+  "aboutDocumentationDesc": {
+    "message": "用户指南和 API 参考"
+  },
+  "aboutLicense": {
+    "message": "许可证"
+  },
+  "aboutLicenseText": {
+    "message": "此扩展是开源的，采用 MIT 许可证发布。您可以根据许可证条款自由使用、修改和分发本软件。"
+  },
+  "aboutCopyright": {
+    "message": "© 2025 GDownload 团队。保留所有权利。"
+  }
+}

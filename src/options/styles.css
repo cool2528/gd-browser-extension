@@ -1,0 +1,120 @@
+/* Import base styles */
+@import '../popup/styles.css';
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-page);
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.options-container {
+  display: flex;
+  height: 100%;
+}
+
+.options-sidebar {
+  width: 200px;
+  background-color: var(--bg-white);
+  border-right: 1px solid var(--border-base);
+  padding: var(--space-lg);
+}
+
+.options-content {
+  flex: 1;
+  padding: var(--space-xl);
+  overflow-y: auto;
+}
+
+.options-nav-item {
+  padding: var(--space-md);
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  color: var(--text-regular);
+}
+
+.options-nav-item:hover {
+  background-color: var(--fill-light);
+  color: var(--text-primary);
+}
+
+.options-nav-item.active {
+  background-color: var(--fill-base);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.options-section {
+  background-color: var(--bg-white);
+  border-radius: var(--radius-base);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.options-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.form-item {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-base);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+}
+
+.form-button {
+  padding: 8px 16px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-base);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-button:hover {
+  background-color: #66b1ff;
+}
+
+.form-button:disabled {
+  background-color: var(--fill-base);
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}

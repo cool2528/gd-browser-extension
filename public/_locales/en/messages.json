@@ -1,0 +1,373 @@
+{
+  "extName": {
+    "message": "GDownload Extension",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Capture download links and send them to GDownload",
+    "description": "Extension description"
+  },
+  "save": {
+    "message": "Save Settings"
+  },
+  "saved": {
+    "message": "Settings saved"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "add": {
+    "message": "Add"
+  },
+  "remove": {
+    "message": "Remove"
+  },
+  "clearAll": {
+    "message": "Clear All"
+  },
+  "enabled": {
+    "message": "Enabled"
+  },
+  "disabled": {
+    "message": "Disabled"
+  },
+  "navSettings": {
+    "message": "Settings"
+  },
+  "navGeneral": {
+    "message": "General"
+  },
+  "navConnection": {
+    "message": "Connection"
+  },
+  "navLinkCapture": {
+    "message": "Link Capture"
+  },
+  "navPrivacy": {
+    "message": "Privacy & Security"
+  },
+  "navAbout": {
+    "message": "About"
+  },
+  "generalTitle": {
+    "message": "General Settings"
+  },
+  "captureBehavior": {
+    "message": "Capture Behavior"
+  },
+  "autoCapture": {
+    "message": "Enable auto capture"
+  },
+  "autoCaptureDesc": {
+    "message": "Automatically capture download links when browsing"
+  },
+  "showNotifications": {
+    "message": "Show desktop notifications"
+  },
+  "autoSend": {
+    "message": "Auto send on capture"
+  },
+  "autoSendDesc": {
+    "message": "Automatically send captured links to GDownload"
+  },
+  "linkFiltering": {
+    "message": "Link Filtering"
+  },
+  "minFileSize": {
+    "message": "Minimum file size (MB)"
+  },
+  "connectionTitle": {
+    "message": "Connection Settings"
+  },
+  "aria2Config": {
+    "message": "aria2 RPC Configuration"
+  },
+  "websocketUrl": {
+    "message": "WebSocket URL"
+  },
+  "websocketUrlDesc": {
+    "message": "The WebSocket URL of your aria2c instance"
+  },
+  "rpcSecret": {
+    "message": "RPC Secret"
+  },
+  "rpcSecretDesc": {
+    "message": "The secret token for authentication"
+  },
+  "autoConnect": {
+    "message": "Auto connect on startup"
+  },
+  "testConnection": {
+    "message": "Test Connection"
+  },
+  "testing": {
+    "message": "Testing..."
+  },
+  "connectionSuccessful": {
+    "message": "Connection successful! aria2c is running."
+  },
+  "connectionFailed": {
+    "message": "Connection failed"
+  },
+  "linkCaptureTitle": {
+    "message": "Link Capture Settings"
+  },
+  "fileSizeFilter": {
+    "message": "File Size Filter"
+  },
+  "minFileSizeDesc": {
+    "message": "Only capture files larger than this size. Set to 0 to capture all files."
+  },
+  "fileTypeFilter": {
+    "message": "File Type Filter"
+  },
+  "fileTypeFilterDesc": {
+    "message": "Only capture specific file types. Leave empty to capture all types."
+  },
+  "quickAdd": {
+    "message": "Quick Add:"
+  },
+  "selectedTypes": {
+    "message": "Selected types ({count}):"
+  },
+  "addCustomFileType": {
+    "message": "Add custom file type"
+  },
+  "fileTypeInputPlaceholder": {
+    "message": ".ext or ext"
+  },
+  "urlBlacklist": {
+    "message": "URL Blacklist"
+  },
+  "urlBlacklistDesc": {
+    "message": "Exclude URLs matching these patterns (regular expressions supported)."
+  },
+  "blacklistPatterns": {
+    "message": "Blacklist patterns ({count}):"
+  },
+  "addBlacklistPattern": {
+    "message": "Add blacklist pattern"
+  },
+  "blacklistPatternPlaceholder": {
+    "message": "^https?://example\\.com/"
+  },
+  "blacklistPatternExample": {
+    "message": "Example: ^https?://ads\\.example\\.com/ (blocks all URLs from ads.example.com)"
+  },
+  "domainWhitelist": {
+    "message": "Domain Whitelist"
+  },
+  "domainWhitelistDesc": {
+    "message": "Only capture links from these domains. Leave empty to capture from all domains."
+  },
+  "whitelistedDomains": {
+    "message": "Whitelisted domains ({count}):"
+  },
+  "addWhitelistDomain": {
+    "message": "Add whitelisted domain"
+  },
+  "domainPlaceholder": {
+    "message": "github.com"
+  },
+  "domainExample": {
+    "message": "Example: github.com, sourceforge.net"
+  },
+  "privacyTitle": {
+    "message": "Privacy & Security Settings"
+  },
+  "aboutHeadersTitle": {
+    "message": "About Request Headers"
+  },
+  "aboutHeadersDesc": {
+    "message": "When downloading files, some servers require specific HTTP headers for authentication or access control. These settings control which headers are sent with download requests to GDownload."
+  },
+  "basicHeaders": {
+    "message": "Basic Headers"
+  },
+  "sendUserAgent": {
+    "message": "Send User-Agent header"
+  },
+  "sendUserAgentDesc": {
+    "message": "Identifies your browser type. Usually safe and often required by servers."
+  },
+  "sendReferer": {
+    "message": "Send Referer header"
+  },
+  "sendRefererDesc": {
+    "message": "Indicates which page you came from. Important for hotlink protection and access control."
+  },
+  "sensitiveHeaders": {
+    "message": "Sensitive Headers"
+  },
+  "securityNoticeTitle": {
+    "message": "Security Notice:"
+  },
+  "securityNoticeDesc": {
+    "message": "The following headers may contain sensitive authentication information. Only enable them if you trust the download sources and understand the risks."
+  },
+  "sendCookie": {
+    "message": "Send Cookie header"
+  },
+  "sendCookieDesc": {
+    "message": "Sensitive: Contains your login session and authentication tokens. Required for downloading from authenticated cloud storage (Baidu Netdisk, Google Drive, etc.)."
+  },
+  "sendAuthorization": {
+    "message": "Send Authorization header"
+  },
+  "sendAuthorizationDesc": {
+    "message": "Sensitive: Contains authentication credentials (API keys, tokens). Required for downloading from private APIs or protected resources."
+  },
+  "recommendations": {
+    "message": "Recommendations"
+  },
+  "safeToEnable": {
+    "message": "Safe to enable:"
+  },
+  "safeUserAgent": {
+    "message": "User-Agent (almost always safe)"
+  },
+  "safeReferer": {
+    "message": "Referer (safe for public downloads)"
+  },
+  "enableWithCaution": {
+    "message": "Enable with caution:"
+  },
+  "cautionCookies": {
+    "message": "Cookies (only for trusted cloud storage services)"
+  },
+  "cautionAuthorization": {
+    "message": "Authorization (only for private APIs you control)"
+  },
+  "bestPractice": {
+    "message": "Best Practice:"
+  },
+  "bestPractice1": {
+    "message": "Keep sensitive headers disabled by default"
+  },
+  "bestPractice2": {
+    "message": "Enable them temporarily when needed for specific downloads"
+  },
+  "bestPractice3": {
+    "message": "Use URL blacklist to prevent sending sensitive headers to untrusted domains"
+  },
+  "currentConfiguration": {
+    "message": "Current Configuration"
+  },
+  "headerUserAgent": {
+    "message": "User-Agent:"
+  },
+  "headerReferer": {
+    "message": "Referer:"
+  },
+  "headerCookie": {
+    "message": "Cookie:"
+  },
+  "headerAuthorization": {
+    "message": "Authorization:"
+  },
+  "statusEnabledSafe": {
+    "message": "Enabled"
+  },
+  "statusDisabledSafe": {
+    "message": "Disabled"
+  },
+  "statusEnabledSensitive": {
+    "message": "Enabled (Sensitive)"
+  },
+  "statusDisabledSecure": {
+    "message": "Disabled (Safe)"
+  },
+  "contextMenuDownload": {
+    "message": "Download with GDownload"
+  },
+  "contextMenuDownloadAll": {
+    "message": "Download All Links on Page"
+  },
+  "popupTitle": {
+    "message": "Captured Links"
+  },
+  "popupNoLinks": {
+    "message": "No links captured yet"
+  },
+  "popupSendToGDownload": {
+    "message": "Send to GDownload"
+  },
+  "popupClear": {
+    "message": "Clear"
+  },
+  "popupSearch": {
+    "message": "Search links..."
+  },
+  "popupConnected": {
+    "message": "Connected"
+  },
+  "popupDisconnected": {
+    "message": "Disconnected"
+  },
+  "popupSending": {
+    "message": "Sending..."
+  },
+  "popupSent": {
+    "message": "Sent successfully"
+  },
+  "popupError": {
+    "message": "Error"
+  },
+  "aboutTitle": {
+    "message": "About"
+  },
+  "aboutExtensionInfo": {
+    "message": "Extension Information"
+  },
+  "aboutName": {
+    "message": "Name:"
+  },
+  "aboutVersion": {
+    "message": "Version:"
+  },
+  "aboutAuthor": {
+    "message": "Author:"
+  },
+  "aboutCompatibility": {
+    "message": "Compatibility"
+  },
+  "aboutGDownloadVersion": {
+    "message": "GDownload Version:"
+  },
+  "aboutAria2Version": {
+    "message": "aria2c Version:"
+  },
+  "aboutBrowsers": {
+    "message": "Browsers:"
+  },
+  "aboutResources": {
+    "message": "Resources"
+  },
+  "aboutGitHub": {
+    "message": "GitHub Repository"
+  },
+  "aboutGitHubDesc": {
+    "message": "View source code and contribute"
+  },
+  "aboutReportIssue": {
+    "message": "Report an Issue"
+  },
+  "aboutReportIssueDesc": {
+    "message": "Found a bug? Let us know"
+  },
+  "aboutDocumentation": {
+    "message": "Documentation"
+  },
+  "aboutDocumentationDesc": {
+    "message": "User guide and API reference"
+  },
+  "aboutLicense": {
+    "message": "License"
+  },
+  "aboutLicenseText": {
+    "message": "This extension is open source and available under the MIT License. You are free to use, modify, and distribute this software in accordance with the terms of the license."
+  },
+  "aboutCopyright": {
+    "message": "© 2025 GDownload Team. All rights reserved."
+  }
+}

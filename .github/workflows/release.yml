@@ -1,0 +1,179 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # 触发条件：推送版本标签（如 v1.0.0）
+
+jobs:
+  build-and-release:
+    name: Build and Release Extension
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # 允许创建 release 和上传文件
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史，用于提取 commit 信息
+
+      # 2. 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. 提取版本号（从 tag 中去掉 'v' 前缀）
+      - name: Extract version
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      # 5. 更新 manifest.json 和 package.json 中的版本号
+      - name: Update version in manifest and package.json
+        run: |
+          # 更新 manifest.json
+          sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.VERSION }}\"/" manifest.json
+
+          # 更新 package.json
+          sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.VERSION }}\"/" package.json
+
+      # 6. 编译扩展（Chrome 版本）
+      - name: Build Chrome Extension
+        run: npm run build:chrome
+
+      # 7. 打包 Chrome 版本
+      - name: Package Chrome Extension
+        run: |
+          cd dist
+          zip -r ../gdownload-extension-chrome-v${{ steps.version.outputs.VERSION }}.zip *
+          cd ..
+
+      # 8. 清理 dist 目录
+      - name: Clean dist directory
+        run: rm -rf dist
+
+      # 9. 编译扩展（Firefox 版本）
+      - name: Build Firefox Extension
+        run: npm run build:firefox
+
+      # 10. 打包 Firefox 版本
+      - name: Package Firefox Extension
+        run: |
+          cd dist
+          zip -r ../gdownload-extension-firefox-v${{ steps.version.outputs.VERSION }}.zip *
+          cd ..
+
+      # 11. 清理 dist 目录
+      - name: Clean dist directory again
+        run: rm -rf dist
+
+      # 12. 编译扩展（Edge 版本）
+      - name: Build Edge Extension
+        run: npm run build:edge
+
+      # 13. 打包 Edge 版本
+      - name: Package Edge Extension
+        run: |
+          cd dist
+          zip -r ../gdownload-extension-edge-v${{ steps.version.outputs.VERSION }}.zip *
+          cd ..
+
+      # 14. 获取最后一次 commit 信息作为 release body
+      - name: Get last commit message
+        id: commit_message
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s%n%n%b")
+          echo "COMMIT_MSG<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # 15. 生成 release notes
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          cat > release_notes.md << 'EOF'
+          ## 🚀 GDownload Browser Extension ${{ steps.version.outputs.VERSION }}
+
+          ### 📝 更新内容
+
+          ${{ steps.commit_message.outputs.COMMIT_MSG }}
+
+          ---
+
+          ### 📦 下载说明
+
+          请根据你的浏览器选择对应的版本下载：
+
+          | 浏览器 | 文件 | 说明 |
+          |--------|------|------|
+          | **Chrome** | `gdownload-extension-chrome-v${{ steps.version.outputs.VERSION }}.zip` | 适用于 Chrome 110+ |
+          | **Firefox** | `gdownload-extension-firefox-v${{ steps.version.outputs.VERSION }}.zip` | 适用于 Firefox 115+ |
+          | **Edge** | `gdownload-extension-edge-v${{ steps.version.outputs.VERSION }}.zip` | 适用于 Edge 110+ |
+
+          ### 📖 安装步骤
+
+          #### Chrome / Edge
+
+          1. 下载对应的 `.zip` 文件
+          2. 解压到任意目录
+          3. 打开 `chrome://extensions/`（Chrome）或 `edge://extensions/`（Edge）
+          4. 启用"开发者模式"
+          5. 点击"加载已解压的扩展程序"
+          6. 选择解压后的文件夹
+
+          #### Firefox
+
+          1. 下载 `.zip` 文件
+          2. 打开 `about:debugging#/runtime/this-firefox`
+          3. 点击"临时载入附加组件"
+          4. 选择解压后文件夹中的 `manifest.json`
+
+          ### 🔗 相关链接
+
+          - [GDownload 主程序](https://github.com/cool2528/GDownload)
+          - [完整文档](https://github.com/cool2528/gd-browser-extension/blob/main/README.zh-CN.md)
+          - [问题反馈](https://github.com/cool2528/gd-browser-extension/issues)
+
+          ### ✅ 系统要求
+
+          - **浏览器**: Chrome 110+ / Firefox 115+ / Edge 110+
+          - **GDownload**: 1.0.0+ (需启用 aria2c)
+          - **aria2c**: 1.36.0+ (GDownload 自带)
+          EOF
+
+          # 输出完整的 release notes
+          cat release_notes.md
+
+      # 16. 创建 GitHub Release
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: GDownload Extension v${{ steps.version.outputs.VERSION }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: false
+          files: |
+            gdownload-extension-chrome-v${{ steps.version.outputs.VERSION }}.zip
+            gdownload-extension-firefox-v${{ steps.version.outputs.VERSION }}.zip
+            gdownload-extension-edge-v${{ steps.version.outputs.VERSION }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 17. 上传构建产物（可选，用于调试）
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-packages-v${{ steps.version.outputs.VERSION }}
+          path: |
+            gdownload-extension-chrome-v${{ steps.version.outputs.VERSION }}.zip
+            gdownload-extension-firefox-v${{ steps.version.outputs.VERSION }}.zip
+            gdownload-extension-edge-v${{ steps.version.outputs.VERSION }}.zip
+          retention-days: 30
