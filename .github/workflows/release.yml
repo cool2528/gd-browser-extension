@@ -26,9 +26,11 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: 'browser-extension/package-lock.json'
 
       # 3. 安装依赖
       - name: Install dependencies
+        working-directory: ./browser-extension
         run: npm ci
 
       # 4. 提取版本号（从 tag 中去掉 'v' 前缀）
@@ -38,6 +40,7 @@ jobs:
 
       # 5. 更新 manifest.json 和 package.json 中的版本号
       - name: Update version in manifest and package.json
+        working-directory: ./browser-extension
         run: |
           # 更新 manifest.json
           sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.VERSION }}\"/" manifest.json
@@ -47,10 +50,12 @@ jobs:
 
       # 6. 编译扩展（Chrome 版本）
       - name: Build Chrome Extension
+        working-directory: ./browser-extension
         run: npm run build:chrome
 
       # 7. 打包 Chrome 版本
       - name: Package Chrome Extension
+        working-directory: ./browser-extension
         run: |
           cd dist
           zip -r ../gdownload-extension-chrome-v${{ steps.version.outputs.VERSION }}.zip *
@@ -58,14 +63,17 @@ jobs:
 
       # 8. 清理 dist 目录
       - name: Clean dist directory
+        working-directory: ./browser-extension
         run: rm -rf dist
 
       # 9. 编译扩展（Firefox 版本）
       - name: Build Firefox Extension
+        working-directory: ./browser-extension
         run: npm run build:firefox
 
       # 10. 打包 Firefox 版本
       - name: Package Firefox Extension
+        working-directory: ./browser-extension
         run: |
           cd dist
           zip -r ../gdownload-extension-firefox-v${{ steps.version.outputs.VERSION }}.zip *
@@ -73,14 +81,17 @@ jobs:
 
       # 11. 清理 dist 目录
       - name: Clean dist directory again
+        working-directory: ./browser-extension
         run: rm -rf dist
 
       # 12. 编译扩展（Edge 版本）
       - name: Build Edge Extension
+        working-directory: ./browser-extension
         run: npm run build:edge
 
       # 13. 打包 Edge 版本
       - name: Package Edge Extension
+        working-directory: ./browser-extension
         run: |
           cd dist
           zip -r ../gdownload-extension-edge-v${{ steps.version.outputs.VERSION }}.zip *
